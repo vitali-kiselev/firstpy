@@ -22,14 +22,16 @@ class MyHandler(SimpleHTTPRequestHandler):
         args = {}
         if len(qs) != 1:
             return args
-            qs = parse_qs(qs)
-            name = qs["name"][0]
+        qs = parse_qs(qs)
+        name = qs["name"][0]
 
     def respond(self,msg: str):
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
         self.send_header("Content-length", str(len(msg)))
         self.end_headers()
+
+        self.wfile.write(msg.encode())
 
 
             
