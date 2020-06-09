@@ -15,6 +15,7 @@ class MyHandler(SimpleHTTPRequestHandler):
     def handle_hallo(self):
         args = self.build_query_args()
         name = args.get("name", "anonim")
+        msg = f"Hello {name}"
         self.respond(msg)
     def build_query_args(self):
         path, *qs = self.path.split("?")
